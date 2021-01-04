@@ -5,14 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <title>MiniChat</title>
+  <title>Socket Server</title>
 </head>
 
 <body class="container">
-  <h1 class="mt-5">MiniChat</h1>
+  <h1 class="mt-5">Acceso denegado</h1>
   <hr>
 
-  <form id="myForm">
+  <!-- <form id="myForm">
     <div class="row">
       <div class="col-8">
         <input type="text" id="txtMessage" placeholder="Mensaje" class="form-control" </div>
@@ -27,38 +27,37 @@
       <ul id="myMessages" class="mt-2">
       </ul>
     </div>
-  </div>
+  </div> -->
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"></script>
   <script>
-    const socket = io('https://react-socket-ooa.herokuapp.com/')
-    const form = document.querySelector('#myForm')
-    const messages = document.querySelector('#myMessages')
-    const txtMessage = document.querySelector('#txtMessage')
+    const socket = io('http://localhost:8080/')
+    // const socket = io('https://react-socket-ooa.herokuapp.com/')
 
-    form.addEventListener('submit', (event) => {
-      event.preventDefault()
+    // const form = document.querySelector('#myForm')
+    // const messages = document.querySelector('#myMessages')
+    // const txtMessage = document.querySelector('#txtMessage')
 
-      const newMessage = txtMessage.value
+    // form.addEventListener('submit', (event) => {
+    //   event.preventDefault()
 
-      socket.emit('message-to-server', {
-        msg: newMessage,
-        name: 'Oscar'
-      })
-    })
+    //   const newMessage = txtMessage.value
 
-    socket.on('message-from-server', (data) => {
-      console.log(data)
-      messages.innerHTML += `<li>${data.msg}</li>`
-    })
-
-    // setTimeout(() => {
-    //   socket.emit('mensaje-cliente', {
-    //     msg: 'cliente',
+    //   socket.emit('message-to-server', {
+    //     msg: newMessage,
     //     name: 'Oscar'
     //   })
-    // }, 2000)
+    // })
+
+    socket.on('current-bands', (bands) => {
+
+      // callback a ejecutar
+
+      console.log(bands)
+      // messages.innerHTML += `<li>${data.msg}</li>`
+    })
+
   </script>
 </body>
 
